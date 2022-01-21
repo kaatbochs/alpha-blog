@@ -4,13 +4,15 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by(email: params[:session][:email].downcase)
+    user = User.find_by(username: params[:session][:username].downcase)
+    user = User.find_by(email: params[:session][:username].downcase) if !user
+
     if user && user.authenticate(params[:session][:password])
       session[:user_id] = user.id
       flash[:notice] = "Logged in successfully"
       redirect_to user
     else
-      flash.now[:alert] = "Email/password combination not recognized"
+      flash.now[:alert] = "User/password combination not found"
       render 'new'
     end
   end

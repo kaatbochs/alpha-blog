@@ -9,5 +9,13 @@ class User < ApplicationRecord
                        uniqueness: { case_sensitive: false },
                        length: { maximum: 105 },
                        format: { with: VALID_EMAIL_REGEX }
+  PASSWORD_COMPLEXITY = /\A
+    (?=.{8,})           # at least 8 characters
+    (?=.*\d)            # at least 1 digit
+    (?=.*[a-z])         # at least 1 lower case
+    (?=.*[A-Z])         # at least 1 upper case
+    (?=.*[[:^alnum:]])  # at least 1 symbol
+  /x
+  validates :password, format: PASSWORD_COMPLEXITY  
   has_secure_password
 end

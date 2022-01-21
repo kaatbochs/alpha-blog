@@ -4,7 +4,7 @@ class CreateCategoryTest < ActionDispatch::IntegrationTest
 
   setup do
     @admin_user = User.create(username: "johndoe", email: "johndoe@example.com",
-                              password: "blogpass", admin: true)
+                              password: "Bl0gpa%%", admin: true)
     sign_in_as(@admin_user)
   end
 
