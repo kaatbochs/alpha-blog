@@ -1,7 +1,7 @@
 
-<h1 class="text-center mt-4"><%= @user.username %>'s profile</h1>
+<h1 class="text-center mt-4">Profile for user <%= @user.username %></h1>
 
-<%= gravatar_for @user, size: 200 %>
+<%= gravatar_for @user, size: 100 %>
 
 <% if logged_in? && @user == current_user %>
   <div class="text-center mt-4">
@@ -9,7 +9,7 @@
   </div>
 <% end %>
 
-<h3 class="text-center mt-4">Articles</h3>
+<h3 class="text-center mt-4"><%= @user.username %>'s Articles</h3>
 
 <div class="flickr_pagination">
   <%= will_paginate @articles, :container => false %>
